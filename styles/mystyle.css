@@ -1,0 +1,18 @@
+body{
+background-color: pink;
+color: purple;
+justify-content: center;
+text-align: center;
+}
+.nav{
+    background-color: white;
+}
+#txtName{
+    background-color: blueviolet;
+}
+.form-control,.form-select{
+    background-color: aqua;
+}
+.nav-item,.nav-link{
+    color: purple;
+}
