@@ -1,3 +1,9 @@
+input,select{
+    margin-bottom: 1rem;
+}
+.btn-primary{
+    background-color: purple;
+}
 body{
 background-color: pink;
 color: purple;
@@ -8,11 +14,19 @@ text-align: center;
     background-color: white;
 }
 #txtName{
-    background-color: blueviolet;
+    background-color: purple;
 }
 .form-control,.form-select{
     background-color: aqua;
 }
 .nav-item,.nav-link{
     color: purple;
+}
+.error{
+    border: 5px solid red;
+}
+
+.my-card{
+    width: 200px;
+    display: inline-flex;
 }

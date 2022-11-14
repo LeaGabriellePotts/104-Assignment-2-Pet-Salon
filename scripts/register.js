@@ -1,15 +1,18 @@
 
 
 //+ Create an object literal (salon) and display the information on the index.html.
-
 //+ Create an object constructor (Pet class/constructor), create three pets using the constructor.
-
 //+ Register pets using the HTML form (using the Pet constructor).
-
 //+ Clear the form.
-
 //** use a good CSS for the index.html and the register.html.
 
+
+//Assignmetn 3: Please submit a project that meets the following requirements: 
+// + Register pets with the proper validation.
+// - Display the pets on cards w info and add CSS style to them. - add the rest of the info (breed gender service etc)
+// Personal challenge: display the pets in a table
+//
+// - use a CSS framework that helps you save time and finish with a beautiful design. - use a display flex 
 //Submit a ZIP file and a GitHub link.
 
 //first we are learning object literal
@@ -51,7 +54,7 @@ function Pet(name,age,gender,breed,service,owner,phone){
 let pet1 = new Pet("scooby",60,"Male","Dane","Grooming","Shaggy","555-5555-555");
 let pet2 = new Pet("Deefer",11,"Male","mutt","vaccine","Katie","703-780-3616");
 let pet3 = new Pet("Princess",2,"female","golden retriever", "vaccine", "Edwin", "703-780-5217");
-petSalon.pets.push(pet1,pet2,pet3);
+
 //register function
 //getting the inputs
 let inputName = document.getElementById("txtName");
@@ -62,25 +65,80 @@ let inputService = document.getElementById("selService");
 let inputOwner = document.getElementById("txtOwner");
 let inputPhone = document.getElementById("txtPhone");
 
-function register(){
-    //get teh values
-  
-    //create teh object
-    let thePet = new Pet(inputName.value,inputAge.value,inputGender.value,inputBreed.value,inputService.value,inputOwner.value,inputPhone.value);
-    //display the obj
-    console.log(thePet);
-    //push the object into the array
-    petSalon.pets.push(thePet);
-    //display    the petSalon.pets array
-    console.log(petSalon.pets);
-    document.getElementById("txtName").value="";
-    document.getElementById("txtAge").value="";
-    document.getElementById("txtGender").value="";
-    document.getElementById("txtBreed").value="";
-    document.getElementById("selService").value="";
-    document.getElementById("txtOwner").value="";
-    document.getElementById("txtPhone").value="";
+function isValid(aPet){
+    let valid=true;
+    //clearing the input borders
+    inputName.classList.remove("error");
+    inputService.classList.remove("error");
+    inputOwner.classList.remove("error");
+    inputPhone.classList.remove("error");
 
+    //check the conditions/add the vaidation
+    if(aPet.name==""){
+        valid=false;
+        inputName.classList.add("error");
+    }
+    if(aPet.service==""){
+        valid=false;
+        inputService.classList.add("error");
+    }
+    if(aPet.ownerName==""){
+        valid=false;
+        inputOwner.classList.add("error");
+    }
+    if(aPet.contactPhone==""){
+        valid=false;
+        inputPhone.classList.add("error");
+    }
+    return valid;
 }
 
-displayInfo();
+function register(){
+    //get teh values and creating teh object
+    let thePet = new Pet(inputName.value,inputAge.value,inputGender.value,inputBreed.value,inputService.value,inputOwner.value,inputPhone.value);
+    //validating thePet
+    if(isValid(thePet)==true){
+        //push the object into the array
+        petSalon.pets.push(thePet);
+        //display the pets
+        displayCards();
+        //display    the petSalon.pets array
+        console.log(petSalon.pets);
+        clearForm();
+        }
+    }
+
+
+    //*********************** */
+    //This is how I cleared the form for assignment 2 and now we are instead creating function clearForm() below, so I am commenting it out but leaving it so I can still see this is a way to do it
+    // document.getElementById("txtName").value="";
+    // document.getElementById("txtAge").value="";
+    // document.getElementById("txtGender").value="";
+    // document.getElementById("txtBreed").value="";
+    // document.getElementById("selService").value="";
+    // document.getElementById("txtOwner").value="";
+    // document.getElementById("txtPhone").value="";
+//***************************** */
+
+//displayInfo was assignment 2 so commenting the call for displayInfo out (it's fine that the function is still up there because it won't execute if we don't call for it)
+// displayInfo();
+
+function clearForm(){
+//clear the text in the inputs//
+inputName.value="";
+inputAge.value="";
+inputGender.value="";
+inputBreed.value="";
+inputService.value="";
+inputOwner.value="";
+inputPhone.value="";
+}
+
+function init(){
+    //this is the main function
+    console.log("init");
+    petSalon.pets.push(pet1,pet2,pet3);
+    displayCards();
+}
+
+window.onload=init;
